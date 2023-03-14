@@ -13,7 +13,8 @@ export function Countdown({ reset }: CountdownProps) {
     activeCycleId,
     amountSecondsPassed,
     markCurrentCycleAsFinished,
-    setSecondsPassed
+    setSecondsPassed,
+    interruptCurrentCycle
   } = useContext(CycleContext);
 
   // represents the amount of seconds passeds since the beginning of countdown start
@@ -26,17 +27,9 @@ export function Countdown({ reset }: CountdownProps) {
       interval = setInterval(() => {
         const secondsDifference = differenceInSeconds(new Date(), activeCycle.startDate);
         if (secondsDifference >= totalSeconds) {
-          // setCycles(cycles => cycles.map(cycle => {
-          //   if (cycle.id === activeCycleId) {
-          //     return { ...cycle, interruptedDate: new Date() }
-          //   } else {
-          //     return cycle;
-          //   }
-          // }))
           markCurrentCycleAsFinished();
           setSecondsPassed(totalSeconds);
           clearInterval(interval);
-          // setActiveCycleId(null);
           reset();
         }
         else

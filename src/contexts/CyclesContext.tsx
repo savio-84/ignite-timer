@@ -47,7 +47,7 @@ export function CyclesContextProvider({ children }: CyclesContextProviderProps) 
       if (cycle.id === activeCycleId) {
         // reset();
         setActiveCycleId(null);
-        return { ...cycle, interruptedDate: new Date() }
+        return { ...cycle, finishedDate: new Date() }
       } else {
         return cycle;
       }
