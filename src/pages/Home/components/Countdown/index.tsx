@@ -1,10 +1,13 @@
 import { differenceInSeconds } from "date-fns";
 import { useContext, useEffect, useState } from "react";
-import { CycleContext } from "../..";
+import { CycleContext } from "../../../../contexts/CyclesContext";
 import { CountdownContainer, Separator } from "./styles";
 
+interface CountdownProps {
+  reset: () => void;
+}
 
-export function Countdown() {
+export function Countdown({ reset }: CountdownProps) {
   const {
     activeCycle,
     activeCycleId,
@@ -34,7 +37,7 @@ export function Countdown() {
           setSecondsPassed(totalSeconds);
           clearInterval(interval);
           // setActiveCycleId(null);
-          // reset();
+          reset();
         }
         else
           setSecondsPassed(secondsDifference);
